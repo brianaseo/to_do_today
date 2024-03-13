@@ -29,20 +29,20 @@ namespace Todolist
         /// </summary>
         private void InitializeComponent()
         {
-            this.btn_load_todolist = new System.Windows.Forms.Button();
+            this.btn_add_todo = new System.Windows.Forms.Button();
             this.todolist_grid_view = new System.Windows.Forms.DataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.todolist_grid_view)).BeginInit();
             this.SuspendLayout();
             // 
-            // btn_load_todolist
+            // btn_add_todo
             // 
-            this.btn_load_todolist.Location = new System.Drawing.Point(12, 415);
-            this.btn_load_todolist.Name = "btn_load_todolist";
-            this.btn_load_todolist.Size = new System.Drawing.Size(181, 23);
-            this.btn_load_todolist.TabIndex = 0;
-            this.btn_load_todolist.Text = "Load Todo List";
-            this.btn_load_todolist.UseVisualStyleBackColor = true;
-            this.btn_load_todolist.Click += new System.EventHandler(this.button1_Click);
+            this.btn_add_todo.Location = new System.Drawing.Point(12, 415);
+            this.btn_add_todo.Name = "btn_add_todo";
+            this.btn_add_todo.Size = new System.Drawing.Size(181, 23);
+            this.btn_add_todo.TabIndex = 0;
+            this.btn_add_todo.Text = "Add Todo";
+            this.btn_add_todo.UseVisualStyleBackColor = true;
+            this.btn_add_todo.Click += new System.EventHandler(this.button1_Click);
             // 
             // todolist_grid_view
             // 
@@ -61,7 +61,7 @@ namespace Todolist
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.todolist_grid_view);
-            this.Controls.Add(this.btn_load_todolist);
+            this.Controls.Add(this.btn_add_todo);
             this.Name = "TodolistMain";
             this.Text = "Form1";
             ((System.ComponentModel.ISupportInitialize)(this.todolist_grid_view)).EndInit();
@@ -71,7 +71,7 @@ namespace Todolist
 
         #endregion
 
-        private System.Windows.Forms.Button btn_load_todolist;
+        private System.Windows.Forms.Button btn_add_todo;
         private System.Windows.Forms.DataGridView todolist_grid_view;
     }
 }

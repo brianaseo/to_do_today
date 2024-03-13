@@ -15,6 +15,8 @@ namespace Todolist
 
     public partial class TodolistMain : Form
     {
+        private List<Todo> todoList = new List<Todo>();
+
         public TodolistMain()
         {
             InitializeComponent();
@@ -30,7 +32,6 @@ namespace Todolist
             todolist_grid_view.Columns.Add(checkBoxColumn);
             todolist_grid_view.Columns.Add("todo", "To do");
 
-            List<Todo> todoList = new List<Todo>();
             loadTodoListFromFile(todoList, "..\\..\\data\\todolist_data.txt");
         }
 
@@ -49,7 +50,10 @@ namespace Todolist
                         {
                             string todoItem = parts[0];
                             bool finished;
-                            bool.TryParse(parts[1], out finished);
+
+                            Console.WriteLine($"parsed: {parts[1]}, {parts[1].Length}");
+
+                            finished = Convert.ToBoolean(Convert.ToInt32(parts[1]));    // 체크 여부를 int변환 후 bool 변환
                             Todo todo = new Todo(todoItem, finished);
                             todoList.Add(todo);
 
@@ -63,12 +67,16 @@ namespace Todolist
                 // DataGridView에 데이터 출력
                 foreach (Todo todo in todoList)
                 {
+                    /*
                     // DataGridView에 행 추가
                     int rowIndex = todolist_grid_view.Rows.Add();
                     // DataGridView의 체크박스에 값 설정
                     todolist_grid_view.Rows[rowIndex].Cells["checkBoxColumn"].Value = todo.Finished;
+                    Console.WriteLine($"value: {todo.Finished}");
                     // DataGridView의 할 일 컬럼에 값 설정
                     todolist_grid_view.Rows[rowIndex].Cells["todo"].Value = todo.TodoItem;
+                    */
+                    Add_todo_to_gridview(todo);
                 }
             }
             catch (Exception ex)
@@ -79,15 +87,28 @@ namespace Todolist
 
         /*
          * function: button1_click
-            버튼을 누르면 todolist가 기록된 파일을 읽어와 표출한다.
-            추후 db방식으로 변경.
+            버튼을 누르면 todo 하나를 추가한다.
          */
         private void button1_Click(object sender, EventArgs e)
         {
             //btn_load_todolist.Text = "clicked";
-
+            string todoItem = "";
+            bool finished = false;
+            Todo todo = new Todo(todoItem, finished);
             
+            todoList.Add(todo);
+            Add_todo_to_gridview(todo);
 
+        }
+        private void Add_todo_to_gridview(Todo todo)
+        {
+            // DataGridView에 행 추가
+            int rowIndex = todolist_grid_view.Rows.Add();
+            // DataGridView의 체크박스에 값 설정
+            todolist_grid_view.Rows[rowIndex].Cells["checkBoxColumn"].Value = todo.Finished;
+            Console.WriteLine($"value: {todo.Finished}");
+            // DataGridView의 할 일 컬럼에 값 설정
+            todolist_grid_view.Rows[rowIndex].Cells["todo"].Value = todo.TodoItem;
         }
 
         private void todolist_grid_view_CellContentClick(object sender, DataGridViewCellEventArgs e)
